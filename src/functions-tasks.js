@@ -77,7 +77,7 @@ function getArgumentsCount(funcs) {
  *
  */
 function getPowerFunction(exponent) {
-  return function (a) {
+  return function ab(a) {
     return a ** exponent;
   };
 }
@@ -100,7 +100,7 @@ function getPolynom(...arg) {
     return null;
   }
 
-  return function (x) {
+  return function ab(x) {
     if (arg.length === 3) {
       return arg[0] * x ** 2 + arg[1] * x + arg[2];
     }
@@ -133,7 +133,7 @@ function memoize(func) {
   const cache = new Map();
   const resultFunction = func();
 
-  return function () {
+  return function ab() {
     if (cache.has(1)) {
       return cache.get(1);
     }
@@ -158,7 +158,7 @@ function memoize(func) {
  * retryer() => 2
  */
 function retry(func, attempts) {
-  return function () {
+  return function ab() {
     let counter = 0;
     while (counter < attempts) {
       try {
@@ -194,7 +194,7 @@ function retry(func, attempts) {
  *
  */
 function logger(func, logFunc) {
-  return function (...x) {
+  return function ab(...x) {
     logFunc(
       `${func.name}(${x.map((arg) => JSON.stringify(arg)).join(',')}) starts`
     );
@@ -219,7 +219,7 @@ function logger(func, logFunc) {
  *   partialUsingArguments(fn, 'a','b','c','d')() => 'abcd'
  */
 function partialUsingArguments(fn, ...args1) {
-  return function (...args2) {
+  return function ab(...args2) {
     return fn(...args1.concat(args2));
   };
 }
@@ -244,7 +244,7 @@ function partialUsingArguments(fn, ...args1) {
 function getIdGeneratorFunction(startFrom) {
   const cache = {};
   cache[startFrom] = startFrom - 1;
-  return function () {
+  return function ab() {
     cache[startFrom] += 1;
     return cache[startFrom];
   };
