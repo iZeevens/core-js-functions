@@ -141,10 +141,19 @@ function memoize(func) {
  * }, 2);
  * retryer() => 2
  */
-function retry(/* func, attempts */) {
-  throw new Error('Not implemented');
+function retry(func, attempts) {
+  return function () {
+    let counter = 0;
+    while (counter < attempts) {
+      try {
+        return func();
+      } catch {
+        counter += 1;
+      }
+    }
+    return func();
+  };
 }
-
 /**
  * Returns the logging wrapper for the specified method,
  * Logger has to log the start and end of calling the specified function.
